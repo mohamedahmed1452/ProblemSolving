@@ -4,9 +4,14 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(MaxProfit([2, 4, 1]));
+           var num= MoveZeroes([0,0]);
+            foreach(var i in num)
+            {
+                Console.WriteLine(i);
+            }
         }
 
+        #region Day01
 
         #region Problem 01
         //public static int[] TwoSum(int[] nums, int target)
@@ -48,7 +53,7 @@
         public static bool ContainsDuplicate(int[] nums)
         {
             var map = new Dictionary<int, int>();
-            foreach(var i in nums)
+            foreach (var i in nums)
                 if (!map.ContainsKey(i))
                     map.Add(i, 1);
                 else
@@ -74,21 +79,69 @@
             int maxProfit = 0;
             int min = int.MaxValue;
 
-            for(int i = 0; i < prices.Length; i++)
+            for (int i = 0; i < prices.Length; i++)
             {
                 if (min > prices[i])
                 {
                     min = prices[i];
                 }
-               int profit = prices[i] - min;
-                if(maxProfit< profit)
+                int profit = prices[i] - min;
+                if (maxProfit < profit)
                 {
                     maxProfit = profit;
                 }
-              
+
             }
 
             return maxProfit;
+        }
+        #endregion
+
+
+        #endregion
+
+        #region Day02
+
+        #region Day01
+        public static int[] MoveZeroes(int[] nums)
+        {
+            int j = 0;
+            for(var i=0;i<nums.Length;i++)
+            {
+                j = i;
+                while (j< nums.Length && nums[j] == 0)
+                {
+                    j++;
+                }
+                if (j == nums.Length) return nums;
+                if (j != i)
+                {
+                    swap(ref nums[i], ref nums[j]);
+                }
+            }
+            return nums;
+
+
+        }
+
+
+
+
+        #endregion
+
+
+
+
+
+
+        #endregion
+
+        #region Helper FUnction
+        public static void swap(ref int n1,ref int n2)
+        {
+            int tmp = n1;
+            n1 = n2;
+            n2 = tmp;
         }
         #endregion
 
