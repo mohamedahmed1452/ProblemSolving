@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-           var num= MoveZeroes([0,0]);
+           var num= PlusOne([9]);
             foreach(var i in num)
             {
                 Console.WriteLine(i);
@@ -129,7 +129,30 @@
 
         #endregion
 
+        #region Problem 02
+        public static int[] PlusOne(int[] digits)
+        {
+            int i = digits.Length - 1;
+            int add = 1;
+            while (i >= 0 && add != 0)
+            {
+                digits[i]++;
+                if (digits[i] == 10) digits[i] = 0;
+                else add = 0;
+                i--;
+            }
+            if (add == 1)
+            {
+                int[] newArr = new int[digits.Length + 1];
 
+                newArr[0] = 1;
+                Array.Copy(digits, 0, newArr, 1, digits.Length);
+                return newArr;
+            }
+                
+            return digits;
+        }
+        #endregion
 
 
 
