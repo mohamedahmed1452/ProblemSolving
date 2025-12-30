@@ -155,7 +155,19 @@
         #endregion
 
 
+        #region Problem 03
+        public static int MissingNumber(int[] nums)
+        {
+            int total = nums.Length * (nums.Length + 1) / 2;
+            int sum = 0;
+            foreach(var i in nums)
+            {
+                sum +=i;
+            }
+            return total - sum;
 
+        }
+        #endregion
 
         #endregion
 
