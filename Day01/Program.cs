@@ -4,9 +4,14 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(MaxProfit([2, 4, 1]));
+           var num= PlusOne([9]);
+            foreach(var i in num)
+            {
+                Console.WriteLine(i);
+            }
         }
 
+        #region Day01
 
         #region Problem 01
         //public static int[] TwoSum(int[] nums, int target)
@@ -48,7 +53,7 @@
         public static bool ContainsDuplicate(int[] nums)
         {
             var map = new Dictionary<int, int>();
-            foreach(var i in nums)
+            foreach (var i in nums)
                 if (!map.ContainsKey(i))
                     map.Add(i, 1);
                 else
@@ -74,21 +79,104 @@
             int maxProfit = 0;
             int min = int.MaxValue;
 
-            for(int i = 0; i < prices.Length; i++)
+            for (int i = 0; i < prices.Length; i++)
             {
                 if (min > prices[i])
                 {
                     min = prices[i];
                 }
-               int profit = prices[i] - min;
-                if(maxProfit< profit)
+                int profit = prices[i] - min;
+                if (maxProfit < profit)
                 {
                     maxProfit = profit;
                 }
-              
+
             }
 
             return maxProfit;
+        }
+        #endregion
+
+
+        #endregion
+
+        #region Day02
+
+        #region Problem 01
+        public static int[] MoveZeroes(int[] nums)
+        {
+            int j = 0;
+            for(var i=0;i<nums.Length;i++)
+            {
+                j = i;
+                while (j< nums.Length && nums[j] == 0)
+                {
+                    j++;
+                }
+                if (j == nums.Length) return nums;
+                if (j != i)
+                {
+                    swap(ref nums[i], ref nums[j]);
+                }
+            }
+            return nums;
+
+
+        }
+
+
+
+
+        #endregion
+
+        #region Problem 02
+        public static int[] PlusOne(int[] digits)
+        {
+            int i = digits.Length - 1;
+            int add = 1;
+            while (i >= 0 && add != 0)
+            {
+                digits[i]++;
+                if (digits[i] == 10) digits[i] = 0;
+                else add = 0;
+                i--;
+            }
+            if (add == 1)
+            {
+                int[] newArr = new int[digits.Length + 1];
+
+                newArr[0] = 1;
+                Array.Copy(digits, 0, newArr, 1, digits.Length);
+                return newArr;
+            }
+                
+            return digits;
+        }
+        #endregion
+
+
+        #region Problem 03
+        public static int MissingNumber(int[] nums)
+        {
+            int total = nums.Length * (nums.Length + 1) / 2;
+            int sum = 0;
+            foreach(var i in nums)
+            {
+                sum +=i;
+            }
+            return total - sum;
+
+        }
+        #endregion
+
+        #endregion
+
+        #region Helper FUnction
+        public static void swap(ref int n1,ref int n2)
+        {
+            int tmp = n1;
+            n1 = n2;
+            n2 = tmp;
         }
         #endregion
 
